@@ -16,7 +16,8 @@ class contaCorrenteServiceCliente : OperacoesContaCorrente {
             println("impossivel realizar um saque maior que a disponibilidade da conta")
             return
         }
-        c.saldoConta -= d;
+        val tx_saque = (d*0.02)
+        c.saldoConta -= d + tx_saque
     }
 
     override fun realizarTransferenciaSaldoEntreContas(c1: contaCorrente, c2: contaCorrente, d: Double) {

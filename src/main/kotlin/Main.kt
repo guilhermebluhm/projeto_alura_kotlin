@@ -4,6 +4,7 @@ import com.kot.model.Gerente
 import com.kot.model.enderecoCliente
 import com.kot.service.ServiceColaboradores
 import com.kot.service.enderecoServiceCliente
+import java.time.LocalDate
 
 fun main() {
 
@@ -22,9 +23,11 @@ fun main() {
     opCnt.persistirSaldoContaCorrente(ctn2, 500.00)
     */
 
-    val f1: Funcionario = Desenvolvedor("bob",211,e,"php junior",2000.00)
-    val f2: Funcionario = Gerente("fernando",125,e_gerente,3500.00,"gerente administrativo")
+    val f1 = Desenvolvedor("bob",211,e,"php junior",2000.00)
+    val f2 = Gerente("fernando",125,e_gerente,false,3500.00,"gerente administrativo", LocalDate.of(2020,5,22))
     var administrativo = ServiceColaboradores()
-    administrativo.bonificacao(f2, f1 as Desenvolvedor,0.2)
-    println(f1.salario)
+    println(administrativo.fazerLogin(f2))
+    administrativo.bonificacao(f2, f1,0.2)
+    administrativo.aplicarPLR(f2)
+    println(getValorBonificacaoJaPaga())
 }
