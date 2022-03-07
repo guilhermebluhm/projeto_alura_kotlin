@@ -1,5 +1,4 @@
 import com.kot.model.Desenvolvedor
-import com.kot.model.Funcionario
 import com.kot.model.Gerente
 import com.kot.model.enderecoCliente
 import com.kot.service.ServiceColaboradores
@@ -27,7 +26,12 @@ fun main() {
     val f2 = Gerente("fernando",125,e_gerente,false,3500.00,"gerente administrativo", LocalDate.of(2020,5,22))
     var administrativo = ServiceColaboradores()
     println(administrativo.fazerLogin(f2))
-    administrativo.bonificacao(f2, f1,0.2)
+    try {
+        administrativo.bonificacao(f2, f1, 0.2)
+    }
+    catch (e: Exception){
+        println(e.message)
+    }
     administrativo.aplicarPLR(f2)
     println(getValorBonificacaoJaPaga())
 }

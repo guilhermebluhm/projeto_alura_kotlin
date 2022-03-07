@@ -6,6 +6,7 @@ import com.kot.model.Gerente
 import com.kot.model.contaAdmin
 import com.kot.repositories.OperacoesColaboradores
 import valorTotalBonificacaoPaga
+import java.lang.IllegalArgumentException
 import java.time.LocalDate
 import java.time.Period
 
@@ -14,6 +15,9 @@ class ServiceColaboradores : OperacoesColaboradores {
         if(f1 is Gerente){
             if(f1.getSenha().equals("12345")){
                 println("ok - autorização registrada")
+                if(d < 0){
+                    throw IllegalArgumentException("ERRO")
+                }
                 valorTotalBonificacaoPaga(d*f2.salario)
                 f2.salario = f2.salario + (f2.salario * d)
                 return
